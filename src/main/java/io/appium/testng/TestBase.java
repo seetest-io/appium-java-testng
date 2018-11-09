@@ -9,6 +9,7 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.impl.Log4jLoggerFactory;
 import org.testng.ITestContext;
@@ -28,13 +29,12 @@ import java.util.Properties;
  */
 public class TestBase {
 
-    private DesiredCapabilities dc = new DesiredCapabilities();
-    AppiumDriver driver = null;
+    DesiredCapabilities dc = new DesiredCapabilities();
+    RemoteWebDriver driver = null;
+    String os;
+    Properties properties;
+    private String deviceQuery;
     Logger LOGGER = new Log4jLoggerFactory().getLogger(this.getClass().getName());
-
-    private String iosAppName;
-    private String androidAppName;
-    private String os;
     private String seetestCloudURL;
 
 
@@ -49,12 +49,8 @@ public class TestBase {
         this.initDefaultDesiredCapabilities();
         dc.setCapability("testName", testContext.getCurrentXmlTest().getName());
         if (os.equals("android")) {
-            dc.setCapability(MobileCapabilityType.APP, "cloud:"+androidAppName);
-            dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
             this.initAndroidDriver(dc);
         } else {
-            dc.setCapability(MobileCapabilityType.APP, "cloud:"+iosAppName);
-            dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, iosAppName);
             this.initIOSDriver(dc);
         }
     }
@@ -63,7 +59,7 @@ public class TestBase {
      * Initialize default properties.
      *
      */
-    private void initDefaultDesiredCapabilities() {
+    protected void initDefaultDesiredCapabilities() {
         LOGGER.info("Setting up Desired Capabilities");
         String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
 
@@ -75,14 +71,14 @@ public class TestBase {
         dc.setCapability("accessKey", accessKey);
         dc.setCapability("fullReset", true);
         dc.setCapability("instrumented", true);
-        String query = "@os='" + os + "'";
-        dc.setCapability("deviceQuery", query);
-        LOGGER.info("Device Query = {}",query);
+        deviceQuery = "@os='" + os + "'";
+        dc.setCapability("deviceQuery", deviceQuery);
+        LOGGER.info("Device Query = {}",deviceQuery);
         LOGGER.info("Desired Capabilities setup complete");
     }
 
     /**
-     * Gets the Android Driver.
+     * Sets the Android Driver.
      */
     private void initAndroidDriver(DesiredCapabilities dc) {
         try {
@@ -95,7 +91,7 @@ public class TestBase {
     }
 
     /**
-     * Gets the IOS Driver.
+     * Sets the IOS Driver.
      */
     private void initIOSDriver(DesiredCapabilities dc) {
         try {
@@ -112,7 +108,7 @@ public class TestBase {
      */
     private void loadInitProperties() {
         String pathToProperties = Objects.requireNonNull(this.getClass().getClassLoader().getResource("seetest.properties")).getFile();
-        Properties properties = new Properties();
+        properties = new Properties();
         try (FileReader fr = new FileReader(pathToProperties)) {
             properties.load(fr);
         } catch (FileNotFoundException e) {
@@ -121,8 +117,7 @@ public class TestBase {
             e.printStackTrace();
         }
 
-        iosAppName = String.valueOf(properties.get("ios.app.name"));
-        androidAppName = String.valueOf(properties.get("android.app.name"));
+
         os = String.valueOf(properties.get("os"));
         seetestCloudURL = String.valueOf(properties.get("seetest.cloud.url"));
     }

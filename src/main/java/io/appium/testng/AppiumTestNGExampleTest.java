@@ -1,11 +1,13 @@
 package io.appium.testng;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Eribank Appium test using TestNG.
  */
-public class AppiumTestNGExampleTest extends TestBase {
+public final class AppiumTestNGExampleTest extends TestBase {
 
     @DataProvider(name="makePaymentsData")
     public Object[][] makePaymentsDataProvider() {
@@ -21,6 +23,31 @@ public class AppiumTestNGExampleTest extends TestBase {
                {
                   {"123456","John Snow","10", "US"}
                };
+    }
+
+    @BeforeClass
+    public void setUp(ITestContext testContext) {
+        super.setUp(testContext);
+    }
+
+    /**
+     * Sets up the default Desired Capabilities.
+     */
+    protected void initDefaultDesiredCapabilities() {
+        LOGGER.info("Enter initDefaultDesiredCapabilities");
+        super.initDefaultDesiredCapabilities();
+        String iosAppName = String.valueOf(properties.get("ios.app.name"));
+        String androidAppName = String.valueOf(properties.get("android.app.name"));
+        if (os.equals("android")) {
+            // Sets up the capabilities for Android App.
+            dc.setCapability(MobileCapabilityType.APP, "cloud:"+androidAppName);
+            dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
+        } else {
+            // Sets up the capabilities for iOS App.
+            dc.setCapability(MobileCapabilityType.APP, "cloud:"+iosAppName);
+            dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, iosAppName);
+        }
+        LOGGER.info("Exit initDefaultDesiredCapabilities");
     }
 
     /**
@@ -35,6 +62,7 @@ public class AppiumTestNGExampleTest extends TestBase {
     @BeforeMethod
     public void eriBankLogin(@Optional("company") String userName, @Optional("company") String password) {
         LOGGER.info("Enter eriBankLogin - " + "userName = " + userName + " password = " + password);
+        // Find Element commands for Find Login elements.
         driver.findElement(By.xpath("//*[@id='usernameTextField']")).sendKeys(userName);
         driver.findElement(By.xpath("//*[@id='passwordTextField']")).sendKeys(password);
         driver.findElement(By.xpath("//*[@id='loginButton']")).click();
