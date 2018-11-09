@@ -1,0 +1,68 @@
+[2018-11-07 14:54:47,411] INFO  Enter TestBase setUp
+[2018-11-07 14:54:47,416] INFO  Setting up Desired Capabilities
+[2018-11-07 14:54:47,436] INFO  Device Query = @os='ios'
+[2018-11-07 14:54:47,445] INFO  Desired Capabilities setup complete
+[2018-11-07 14:54:47,445] INFO  Initializing IOS Driver ...
+[2018-11-07 14:55:54,034] INFO  IOS Driver Initialized ...
+[2018-11-07 14:57:50,883] INFO  Enter TestBase setUp
+[2018-11-07 14:57:50,887] INFO  Setting up Desired Capabilities
+[2018-11-07 14:57:50,891] INFO  Device Query = @os='ios'
+[2018-11-07 14:57:50,899] INFO  Desired Capabilities setup complete
+[2018-11-07 14:57:50,899] INFO  Initializing IOS Driver ...
+[2018-11-07 14:58:50,859] INFO  IOS Driver Initialized ...
+[2018-11-07 14:58:50,939] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 14:59:14,926] INFO  Exit eriBankLogin
+[2018-11-07 14:59:14,928] INFO  Enter makePaymentTest - Phone = 0541234567 name = John Snow amount = 10
+[2018-11-07 14:59:57,910] INFO  Enter eriBankLogout
+[2018-11-07 15:22:59,802] INFO  Enter TestBase setUp
+[2018-11-07 15:22:59,806] INFO  Setting up Desired Capabilities
+[2018-11-07 15:22:59,810] INFO  Device Query = @os='ios'
+[2018-11-07 15:22:59,814] INFO  Desired Capabilities setup complete
+[2018-11-07 15:22:59,814] INFO  Initializing IOS Driver ...
+[2018-11-07 15:23:40,268] INFO  IOS Driver Initialized ...
+[2018-11-07 15:23:40,282] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 15:23:51,728] INFO  Exit eriBankLogin
+[2018-11-07 15:23:51,731] INFO  Enter makePaymentTest - Phone = 0541234567 name = John Snow amount = 10
+[2018-11-07 15:24:26,025] INFO  Exit makePaymentTest
+[2018-11-07 15:24:26,028] INFO  Enter eriBankLogout
+[2018-11-07 15:27:17,937] INFO  Enter TestBase setUp
+[2018-11-07 15:27:17,940] INFO  Setting up Desired Capabilities
+[2018-11-07 15:27:17,945] INFO  Device Query = @os='ios'
+[2018-11-07 15:27:17,949] INFO  Desired Capabilities setup complete
+[2018-11-07 15:27:17,949] INFO  Initializing IOS Driver ...
+[2018-11-07 15:28:17,562] INFO  IOS Driver Initialized ...
+[2018-11-07 15:28:17,574] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 15:28:44,410] INFO  Exit eriBankLogin
+[2018-11-07 15:28:44,411] INFO  Enter makePaymentTest - Phone = 0541234567 name = John Snow amount = 10 country = US
+[2018-11-07 15:29:53,416] INFO  Exit makePaymentTest
+[2018-11-07 15:29:53,418] INFO  Enter eriBankLogout
+[2018-11-07 15:30:02,101] INFO  Exit eriBankLogout
+[2018-11-07 15:32:50,527] INFO  Enter TestBase setUp
+[2018-11-07 15:32:50,530] INFO  Setting up Desired Capabilities
+[2018-11-07 15:32:50,535] INFO  Device Query = @os='ios'
+[2018-11-07 15:32:50,539] INFO  Desired Capabilities setup complete
+[2018-11-07 15:32:50,539] INFO  Initializing IOS Driver ...
+[2018-11-07 15:33:50,418] INFO  IOS Driver Initialized ...
+[2018-11-07 15:33:50,433] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 15:34:15,637] INFO  Exit eriBankLogin
+[2018-11-07 15:34:15,639] INFO  Enter makePaymentTest - Phone = 0541234567 name = John Snow amount = 10 country = US
+[2018-11-07 15:35:11,254] INFO  Exit makePaymentTest
+[2018-11-07 15:35:11,255] INFO  Enter eriBankLogout
+[2018-11-07 15:35:18,290] INFO  Exit eriBankLogout
+[2018-11-07 15:39:01,097] INFO  Enter TestBase setUp
+[2018-11-07 15:39:01,100] INFO  Setting up Desired Capabilities
+[2018-11-07 15:39:01,104] INFO  Device Query = @os='ios'
+[2018-11-07 15:39:01,109] INFO  Desired Capabilities setup complete
+[2018-11-07 15:39:01,109] INFO  Initializing IOS Driver ...
+[2018-11-07 15:40:01,140] INFO  IOS Driver Initialized ...
+[2018-11-07 15:40:01,165] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 15:40:26,894] INFO  Exit eriBankLogin
+[2018-11-07 15:40:26,894] INFO  Enter makePaymentTest - Phone = 0541234567 name = John Snow amount = 10 country = US
+[2018-11-07 15:41:26,298] INFO  Exit makePaymentTest
+[2018-11-07 15:41:26,302] INFO  Enter eriBankLogout
+[2018-11-07 15:41:32,487] INFO  Exit eriBankLogout
+[2018-11-07 15:41:32,491] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-07 15:41:57,056] INFO  Exit eriBankLogin
+[2018-11-07 15:41:57,058] INFO  Enter mortgageRequestTest - firstName = mortgageUser loanAmount = 1234
+[2018-11-07 15:42:33,084] INFO  Enter eriBankLogout
+[2018-11-07 15:42:40,550] INFO  Exit eriBankLogout

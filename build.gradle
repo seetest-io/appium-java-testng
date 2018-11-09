@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'appium-java-testng'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://cloud.experitest.com/repo/"
+    }
+}
+
+dependencies {
+    compile group: 'io.appium', name: 'java-client', version: '4.1.2'
+    compile group: 'org.testng', name: 'testng', version: '6.9.10'
+    compile 'org.slf4j:slf4j-api:1.7.23'
+    compile 'org.slf4j:slf4j-log4j12:1.7.7'
+    compile group: 'com.experitest', name: 'seetest-client', version: '+'
+}

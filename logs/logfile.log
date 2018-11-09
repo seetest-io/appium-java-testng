@@ -1,0 +1,76 @@
+[2018-11-09 13:23:38,101] INFO  Enter TestBase setUp
+[2018-11-09 13:23:38,108] INFO  Setting up Desired Capabilities
+[2018-11-09 13:23:38,130] INFO  Device Query = @os='null'
+[2018-11-09 13:23:38,139] INFO  Desired Capabilities setup complete
+[2018-11-09 13:23:38,139] INFO  Initializing IOS Driver ...
+[2018-11-09 13:29:09,656] INFO  Enter TestBase setUp
+[2018-11-09 13:29:09,661] INFO  Setting up Desired Capabilities
+[2018-11-09 13:29:09,664] INFO  Device Query = @os='null'
+[2018-11-09 13:29:09,668] INFO  Desired Capabilities setup complete
+[2018-11-09 13:29:09,668] INFO  Initializing IOS Driver ...
+[2018-11-09 13:32:36,478] INFO  Enter TestBase setUp
+[2018-11-09 13:32:36,485] INFO  Setting up Desired Capabilities
+[2018-11-09 13:32:36,493] INFO  Device Query = @os='android'
+[2018-11-09 13:32:36,498] INFO  Desired Capabilities setup complete
+[2018-11-09 13:32:36,498] INFO  Initializing Android Driver ...
+[2018-11-09 13:34:27,774] INFO  Enter TestBase setUp
+[2018-11-09 13:34:27,779] INFO  Setting up Desired Capabilities
+[2018-11-09 13:34:27,783] INFO  Device Query = @os='android'
+[2018-11-09 13:34:27,788] INFO  Desired Capabilities setup complete
+[2018-11-09 13:34:27,789] INFO  Initializing Android Driver ...
+[2018-11-09 13:35:05,151] INFO  Android Driver Initialized ...
+[2018-11-09 13:35:05,164] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 13:35:15,359] INFO  Exit eriBankLogin
+[2018-11-09 13:35:15,360] INFO  Enter makePaymentTest - Phone = 123456 name = John Snow amount = 10 country = US
+[2018-11-09 13:35:39,997] INFO  Exit makePaymentTest
+[2018-11-09 13:35:39,999] INFO  Enter eriBankLogout
+[2018-11-09 13:35:43,622] INFO  Exit eriBankLogout
+[2018-11-09 13:35:43,623] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 13:35:53,877] INFO  Exit eriBankLogin
+[2018-11-09 13:35:53,877] INFO  Enter balanceTest - firstName = 100
+[2018-11-09 13:35:57,330] INFO  Actual Balance = 90
+[2018-11-09 13:35:57,346] INFO  Enter eriBankLogout
+[2018-11-09 13:36:00,870] INFO  Exit eriBankLogout
+[2018-11-09 13:48:45,655] INFO  Enter TestBase setUp
+[2018-11-09 13:48:45,662] INFO  Setting up Desired Capabilities
+[2018-11-09 13:48:45,669] INFO  Device Query = @os='android'
+[2018-11-09 13:48:45,675] INFO  Desired Capabilities setup complete
+[2018-11-09 13:48:45,675] INFO  Initializing Android Driver ...
+[2018-11-09 13:49:22,986] INFO  Android Driver Initialized ...
+[2018-11-09 13:49:22,998] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 13:49:33,180] INFO  Exit eriBankLogin
+[2018-11-09 13:49:33,182] INFO  Enter makePaymentTest - Phone = 123456 name = John Snow amount = 10 country = US
+[2018-11-09 13:49:58,387] INFO  Exit makePaymentTest
+[2018-11-09 13:49:58,388] INFO  Enter eriBankLogout
+[2018-11-09 13:50:02,062] INFO  Exit eriBankLogout
+[2018-11-09 13:50:02,068] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 13:50:12,595] INFO  Exit eriBankLogin
+[2018-11-09 13:50:12,597] INFO  Enter balanceTest - expectedBalance = 90
+[2018-11-09 13:50:16,144] INFO  Actual Balance = 90
+[2018-11-09 13:50:16,145] INFO  Exit balanceTest
+[2018-11-09 13:50:16,145] INFO  Enter eriBankLogout
+[2018-11-09 13:50:20,787] INFO  Exit eriBankLogout
+[2018-11-09 14:01:55,923] INFO  Enter TestBase setUp
+[2018-11-09 14:01:55,930] INFO  Setting up Desired Capabilities
+[2018-11-09 14:01:55,942] INFO  Device Query = @os='ios'
+[2018-11-09 14:01:55,946] INFO  Desired Capabilities setup complete
+[2018-11-09 14:01:55,947] INFO  Initializing IOS Driver ...
+[2018-11-09 14:06:32,874] INFO  Enter TestBase setUp
+[2018-11-09 14:06:32,878] INFO  Setting up Desired Capabilities
+[2018-11-09 14:06:32,881] INFO  Device Query = @os='ios'
+[2018-11-09 14:06:32,885] INFO  Desired Capabilities setup complete
+[2018-11-09 14:06:32,885] INFO  Initializing IOS Driver ...
+[2018-11-09 14:07:13,943] INFO  IOS Driver Initialized ...
+[2018-11-09 14:07:13,961] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 14:07:23,444] INFO  Exit eriBankLogin
+[2018-11-09 14:07:23,445] INFO  Enter makePaymentTest - Phone = 123456 name = John Snow amount = 10 country = US
+[2018-11-09 14:07:43,886] INFO  Exit makePaymentTest
+[2018-11-09 14:07:43,891] INFO  Enter eriBankLogout
+[2018-11-09 14:07:46,778] INFO  Exit eriBankLogout
+[2018-11-09 14:07:46,784] INFO  Enter eriBankLogin - userName = company password = company
+[2018-11-09 14:07:56,081] INFO  Exit eriBankLogin
+[2018-11-09 14:07:56,082] INFO  Enter balanceTest - expectedBalance = 90
+[2018-11-09 14:07:58,190] INFO  Actual Balance = 90
+[2018-11-09 14:07:58,194] INFO  Exit balanceTest
+[2018-11-09 14:07:58,195] INFO  Enter eriBankLogout
+[2018-11-09 14:08:00,885] INFO  Exit eriBankLogout
