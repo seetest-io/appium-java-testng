@@ -72,36 +72,9 @@ public class AppiumTestNGExampleTest extends TestBase {
     }
 
     /**
-     * Test for mortgageRequest.
-     *
-     * Parameter firstName from testng.xml , and default loanAmount.
-     *
-     * @param firstName First Name for Mortgage Request.
-     *
-
-    @Parameters({"firstName"})
-    @Test
-    public void mortgageRequestTest(String firstName) {
-        LOGGER.info("Enter mortgageRequestTest - firstName = " + firstName);
-        driver.findElement(By.xpath("//*[@text='Mortgage Request']")).click();
-        driver.findElement(By.xpath("//*[@id='nameTextField']")).sendKeys(firstName);
-        //driver.findElement(By.xpath("//*[@placeholder='Loan Amount']")).sendKeys(loanAmount);
-        driver.findElement(By.xpath("//*[@id='nextButton']")).click();
-
-        RemoteWebElement element = (RemoteWebElement)driver. findElement(By.xpath("//*[@id='saveButton']"));
-        String elementID = element.getId();
-        HashMap<String, String> scrollObject = new HashMap<String, String>();
-        scrollObject.put("element", elementID);
-        scrollObject.put("toVisible", "not an empty string");
-        driver.executeScript("mobile:scroll", scrollObject);
-        //driver.findElement(By.xpath("//*[@id='saveButton']")).click();
-        LOGGER.info("Exit mortgageRequestTest");
-    } */
-
-    /**
      * Asserts for Balance.
      *
-     * @param expectedBalance
+     * @param expectedBalance Expected Balance.
      */
     @Parameters({"expectedBalance"})
     @Test

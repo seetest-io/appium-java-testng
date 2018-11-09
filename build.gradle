@@ -14,10 +14,29 @@ repositories {
     }
 }
 
+sourceSets {
+    main {
+        runtimeClasspath = files(output.resourcesDir) + runtimeClasspath
+    }
+    test{
+        runtimeClasspath = main.runtimeClasspath
+    }
+}
+
 dependencies {
     compile group: 'io.appium', name: 'java-client', version: '4.1.2'
     compile group: 'org.testng', name: 'testng', version: '6.9.10'
     compile 'org.slf4j:slf4j-api:1.7.23'
     compile 'org.slf4j:slf4j-log4j12:1.7.7'
     compile group: 'com.experitest', name: 'seetest-client', version: '+'
+}
+
+task runTests(type: JavaExec, dependsOn: 'classes') {
+    main = 'org.testng.TestNG'
+    classpath = files("./src/test/resources",
+            project.sourceSets.main.compileClasspath,
+            project.sourceSets.test.compileClasspath,
+            project.sourceSets.main.runtimeClasspath,
+            project.sourceSets.test.runtimeClasspath)
+    args = ["./src/main/java/testng.xml"]
 }

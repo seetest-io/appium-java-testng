@@ -37,6 +37,11 @@ public class TestBase {
     private String os;
     private String seetestCloudURL;
 
+
+    /**
+     * Core setup function, which sets up the selenium/appium drivers.
+     * @param testContext Test Context for the Test.
+     */
     @BeforeClass
     public void setUp(ITestContext testContext) {
         LOGGER.info("Enter TestBase setUp");
