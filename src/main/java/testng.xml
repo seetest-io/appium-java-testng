@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="AppiumTestNGExample" verbose="2">
+<suite name="TestNGExample" configfailurepolicy="continue" verbose="2">
    <!-- preserve-order=true ensures that the order is  -->
-   <test name="AppiumTestNGExample" preserve-order="true">
-      <!-- Test level parameters, visible to all classes of Test -->
-      <parameter name = "userName" value="company"/>
+   <test name="TestNGExample">
       <classes>
          <class name="io.appium.testng.AppiumTestNGExampleTest">
+            <parameter name = "userName" value="company"/>
             <methods>
                <include name="makePaymentTest" />
                <include name="balanceTest" >
@@ -15,7 +14,14 @@
                </include>
             </methods>
          </class>
+         <class name="io.appium.testng.WebTestNGExampleTest">
+            <methods>
+               <include name="titleTest" >
+                  <parameter name = "url" value="http://google.com"/>
+                  <parameter name = "title" value="Google"/>
+               </include>
+            </methods>
+         </class>
       </classes>
    </test>
-
 </suite>
