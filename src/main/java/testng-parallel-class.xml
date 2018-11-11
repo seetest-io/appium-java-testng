@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNGParallelClass" parallel="classes" configfailurepolicy="continue" verbose="2">
+   <!-- preserve-order=true ensures that the order is  -->
+   <test name="TestNGParallelClass">
+      <classes>
+         <class name="io.appium.testng.AppiumTestNGExampleTest">
+            <parameter name = "userName" value="company"/>
+            <methods>
+               <include name="makePaymentTest" />
+               <include name="balanceTest" >
+                  <!-- Test Method Level Parameter -->
+                  <parameter name = "expectedBalance" value="90"/>
+               </include>
+            </methods>
+         </class>
+         <class name="io.appium.testng.WebTestNGExampleTest">
+            <methods>
+               <include name="titleTest" >
+                  <parameter name = "url" value="http://google.com"/>
+                  <parameter name = "title" value="Google"/>
+               </include>
+            </methods>
+         </class>
+      </classes>
+   </test>
+</suite>

@@ -40,11 +40,15 @@ public final class AppiumTestNGExampleTest extends TestBase {
         String androidAppName = String.valueOf(properties.get("android.app.name"));
         if (os.equals("android")) {
             // Sets up the capabilities for Android App.
+            LOGGER.info("MobileCapabilityType.APP = " + "cloud:"+androidAppName);
             dc.setCapability(MobileCapabilityType.APP, "cloud:"+androidAppName);
             dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
+            LOGGER.info("AndroidMobileCapabilityType.APP_ACTIVITY = " + ".LoginActivity");
         } else {
             // Sets up the capabilities for iOS App.
+            LOGGER.info("MobileCapabilityType.APP = " + "cloud:"+iosAppName);
             dc.setCapability(MobileCapabilityType.APP, "cloud:"+iosAppName);
+            LOGGER.info("IOSMobileCapabilityType.BUNDLE_ID = " + iosAppName);
             dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, iosAppName);
         }
         LOGGER.info("Exit initDefaultDesiredCapabilities");
