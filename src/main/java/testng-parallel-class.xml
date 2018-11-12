@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestNGParallelClass" parallel="classes" configfailurepolicy="continue" verbose="2">
-   <!-- preserve-order=true ensures that the order is  -->
-   <test name="TestNGParallelClass">
+<suite name="TestNGParallelClass" parallel="tests" configfailurepolicy="continue" verbose="2">
+   <parameter name = "userName" value="company"/>
+   <test name="AndroidTestNGExample">
       <classes>
-         <class name="io.appium.testng.AppiumTestNGExampleTest">
+         <class name="io.appium.testng.AndroidTestNGExampleTest">
             <parameter name = "userName" value="company"/>
+            <parameter name = "os" value="android"/>
+            <methods>
+               <include name="makePaymentTest" />
+               <include name="balanceTest" >
+                  <parameter name = "expectedBalance" value="90"/>
+               </include>
+            </methods>
+         </class>
+      </classes>
+   </test>
+   <test  name="IOSTestNGExample">
+      <parameter name = "os" value="ios"/>
+      <classes>
+         <class name="io.appium.testng.IOSTestNGExampleTest">
             <methods>
                <include name="makePaymentTest" />
                <include name="balanceTest" >
@@ -14,7 +28,12 @@
                </include>
             </methods>
          </class>
+      </classes>
+   </test>
+   <test name="WebTestNGexample">
+      <classes>
          <class name="io.appium.testng.WebTestNGExampleTest">
+            <parameter name = "os" value="android"/>
             <methods>
                <include name="titleTest" >
                   <parameter name = "url" value="http://google.com"/>

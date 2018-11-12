@@ -14,11 +14,6 @@ import org.testng.annotations.Test;
  */
 public class WebTestNGExampleTest extends TestBase {
 
-    @BeforeClass
-    public void setUp(ITestContext testContext) {
-        super.setUp(testContext);
-    }
-
     /**
      * Sets up the default Desired Capabilities.
      */

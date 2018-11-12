@@ -11,11 +11,12 @@ import org.testng.annotations.*;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import io.appium.testng.ELEMENTS.TYPE;
 
 /**
  * Eribank Appium test using TestNG.
  */
-public final class AppiumTestNGExampleTest extends TestBase {
+public final class AndroidTestNGExampleTest extends TestBase {
 
     @DataProvider(name="makePaymentsData")
     public Object[][] makePaymentsDataProvider() {
@@ -25,10 +26,7 @@ public final class AppiumTestNGExampleTest extends TestBase {
                };
     }
 
-    @BeforeClass
-    public void setUp(ITestContext testContext) {
-        super.setUp(testContext);
-    }
+
 
     /**
      * Sets up the default Desired Capabilities.
@@ -67,16 +65,16 @@ public final class AppiumTestNGExampleTest extends TestBase {
     public void eriBankLogin(@Optional("company") String userName, @Optional("company") String password) {
         LOGGER.info("Enter eriBankLogin - " + "userName = " + userName + " password = " + password);
         // Find Element commands for Find Login elements.
-        driver.findElement(By.xpath("//*[@id='usernameTextField']")).sendKeys(userName);
-        driver.findElement(By.xpath("//*[@id='passwordTextField']")).sendKeys(password);
-        driver.findElement(By.xpath("//*[@id='loginButton']")).click();
+        driver.findElement(ELEMENTS.LOGIN_USER.getBy(TYPE.ANDROID)).sendKeys(userName);
+        driver.findElement(ELEMENTS.LOGIN_PASS.getBy(TYPE.ANDROID)).sendKeys(password);
+        driver.findElement(ELEMENTS.LOGIN_BUTTON.getBy(TYPE.ANDROID)).click();
         LOGGER.info("Exit eriBankLogin");
     }
 
     @AfterMethod
     public void eriBankLogout() {
         LOGGER.info("Enter eriBankLogout");
-        driver.findElement(By.xpath("//*[@id='logoutButton']")).click();
+        driver.findElement(ELEMENTS.LOGOUT_BUTTON.getBy(TYPE.ANDROID)).click();
         LOGGER.info("Exit eriBankLogout");
     }
 
@@ -93,13 +91,13 @@ public final class AppiumTestNGExampleTest extends TestBase {
     public void makePaymentTest(String phone, String name, String amount, String country) {
         LOGGER.info("Enter makePaymentTest - Phone = " + phone + " name = "
                 + name + " amount = " + amount + " country = " + country);
-        driver.findElement(By.xpath("//*[@id='makePaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@id='phoneTextField']")).sendKeys(phone);
-        driver.findElement(By.xpath("//*[@id='nameTextField']")).sendKeys(name);
-        driver.findElement(By.xpath("//*[@id='amountTextField']")).sendKeys(amount);
-        driver.findElement(By.xpath("//*[@id='countryTextField']")).sendKeys(country);
-        driver.findElement(By.xpath("//*[@id='sendPaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@text='Yes']")).click();
+        driver.findElement(ELEMENTS.PAYMENT_BUTTON.getBy(TYPE.ANDROID)).click();
+        driver.findElement(ELEMENTS.PHONE.getBy(TYPE.ANDROID)).sendKeys(phone);
+        driver.findElement(ELEMENTS.NAME.getBy(TYPE.ANDROID)).sendKeys(name);
+        driver.findElement(ELEMENTS.AMOUNT.getBy(TYPE.ANDROID)).sendKeys(amount);
+        driver.findElement(ELEMENTS.COUNTRY.getBy(TYPE.ANDROID)).sendKeys(country);
+        driver.findElement(ELEMENTS.SEND_PAYMENT_BUTTON.getBy(TYPE.ANDROID)).click();
+        driver.findElement(ELEMENTS.YES_BUTTON.getBy(TYPE.ANDROID)).click();
         LOGGER.info("Exit makePaymentTest");
     }
 

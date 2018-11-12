@@ -8,6 +8,7 @@ import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.boon.core.Sys;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -15,6 +16,8 @@ import org.slf4j.impl.Log4jLoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -42,12 +45,15 @@ public class TestBase {
      * Core setup function, which sets up the selenium/appium drivers.
      * @param testContext Test Context for the Test.
      */
+    @Parameters("os")
     @BeforeClass
-    public void setUp(ITestContext testContext) {
+    public void setUp(@Optional("android") String os, ITestContext testContext) {
         LOGGER.info("Enter TestBase setUp");
+        this.os = os;
         this.loadInitProperties();
         this.initDefaultDesiredCapabilities();
-        dc.setCapability("testName", testContext.getCurrentXmlTest().getName());
+        dc.setCapability("testName",
+                testContext.getCurrentXmlTest().getName() + "." + this.getClass().getSimpleName());
         if (os.equals("android")) {
             this.initAndroidDriver(dc);
         } else {
@@ -107,6 +113,7 @@ public class TestBase {
      * Loads properties.
      */
     private void loadInitProperties() {
+        LOGGER.info("Enter loadInitProperties() ...");
         String pathToProperties = Objects.requireNonNull(this.getClass().getClassLoader().getResource("seetest.properties")).getFile();
         properties = new Properties();
         try (FileReader fr = new FileReader(pathToProperties)) {
@@ -116,10 +123,10 @@ public class TestBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        os = String.valueOf(properties.get("os"));
+        properties.entrySet().stream()
+                .forEach( (entry) -> LOGGER.info("Key = " + entry.getKey() +  " ; Value = "  + entry.getValue()));
         seetestCloudURL = String.valueOf(properties.get("seetest.cloud.url"));
+        LOGGER.info("Exit loadInitProperties() ...");
     }
 
     @AfterClass
