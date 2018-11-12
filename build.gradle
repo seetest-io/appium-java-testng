@@ -48,5 +48,5 @@ task runTestsParallel(type: JavaExec, dependsOn: 'classes') {
             project.sourceSets.test.compileClasspath,
             project.sourceSets.main.runtimeClasspath,
             project.sourceSets.test.runtimeClasspath)
-    args = ["./src/main/java/testng-parallel-class.xml"]
+    args = ["./src/main/java/testng-parallel-tests.xml"]
 }
