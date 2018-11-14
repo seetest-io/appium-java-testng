@@ -18,6 +18,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import com.experitest.appium.SeeTestCapabilityType;
+import utils.SeeTestProperties;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -32,14 +34,16 @@ import java.util.Properties;
  */
 public class TestBase {
 
+    public static final String ENV_VAR_ACCESS_KEY = "SEETEST_IO_ACCESS_KEY";
+    public static final boolean FULL_RESET = true;
+    public static final boolean INSTRUMENT_APP = true;
+
     DesiredCapabilities dc = new DesiredCapabilities();
     RemoteWebDriver driver = null;
     String os;
     Properties properties;
     private String deviceQuery;
     Logger LOGGER = new Log4jLoggerFactory().getLogger(this.getClass().getName());
-    private String seetestCloudURL;
-
 
     /**
      * Core setup function, which sets up the selenium/appium drivers.
@@ -50,15 +54,13 @@ public class TestBase {
     public void setUp(@Optional("android") String os, ITestContext testContext) {
         LOGGER.info("Enter TestBase setUp");
         this.os = os;
-        this.loadInitProperties();
+        properties = SeeTestProperties.getSeeTestProperties();
         this.initDefaultDesiredCapabilities();
         dc.setCapability("testName",
                 testContext.getCurrentXmlTest().getName() + "." + this.getClass().getSimpleName());
-        if (os.equals("android")) {
-            this.initAndroidDriver(dc);
-        } else {
-            this.initIOSDriver(dc);
-        }
+        driver = os.equals("android") ?
+                new AndroidDriver(SeeTestProperties.SEETEST_IO_APPIUM_URL, dc) :
+                new IOSDriver(SeeTestProperties.SEETEST_IO_APPIUM_URL, dc);
     }
 
     /**
@@ -67,67 +69,22 @@ public class TestBase {
      */
     protected void initDefaultDesiredCapabilities() {
         LOGGER.info("Setting up Desired Capabilities");
-        String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
+        String accessKey = System.getenv(ENV_VAR_ACCESS_KEY);
 
         if (accessKey == null || accessKey.length() < 10) {
             LOGGER.error("Access key must be set in Environment variable SEETEST_IO_ACCESS_KEY");
             LOGGER.info("To get access get to to https://cloud.seetest.io or learn at https://docs.seetest.io/display/SEET/Execute+Tests+on+SeeTest+-+Obtaining+Access+Key", accessKey);
             throw new RuntimeException("Access key invalid : accessKey - " + accessKey);
         }
-        dc.setCapability("accessKey", accessKey);
-        dc.setCapability("fullReset", true);
-        dc.setCapability("instrumented", true);
-        deviceQuery = "@os='" + os + "'";
-        dc.setCapability("deviceQuery", deviceQuery);
-        LOGGER.info("Device Query = {}",deviceQuery);
+
+        dc.setCapability(SeeTestCapabilityType.ACCESS_KEY, accessKey);
+        dc.setCapability(MobileCapabilityType.FULL_RESET, FULL_RESET);
+        String query = String.format("@os='%s'", os);
+        dc.setCapability(SeeTestCapabilityType.DEVICE_QUERY, query);
+        LOGGER.info("Device Query = {}", query);
         LOGGER.info("Desired Capabilities setup complete");
     }
 
-    /**
-     * Sets the Android Driver.
-     */
-    private void initAndroidDriver(DesiredCapabilities dc) {
-        try {
-            LOGGER.info("Initializing Android Driver ...");
-            driver = new AndroidDriver<AndroidElement>(new URL(seetestCloudURL), dc);
-            LOGGER.info("Android Driver Initialized ...");
-        } catch (MalformedURLException malformedExc) {
-            LOGGER.error("Cannot load the driver");
-        }
-    }
-
-    /**
-     * Sets the IOS Driver.
-     */
-    private void initIOSDriver(DesiredCapabilities dc) {
-        try {
-            LOGGER.info("Initializing IOS Driver ...");
-            driver = new IOSDriver<IOSElement>(new URL(seetestCloudURL), dc);
-            LOGGER.info("IOS Driver Initialized ...");
-        } catch (MalformedURLException malformedExc) {
-            LOGGER.error("Cannot load the driver");
-        }
-    }
-
-    /**
-     * Loads properties.
-     */
-    private void loadInitProperties() {
-        LOGGER.info("Enter loadInitProperties() ...");
-        String pathToProperties = Objects.requireNonNull(this.getClass().getClassLoader().getResource("seetest.properties")).getFile();
-        properties = new Properties();
-        try (FileReader fr = new FileReader(pathToProperties)) {
-            properties.load(fr);
-        } catch (FileNotFoundException e) {
-            LOGGER.warn("Could not load init properties", pathToProperties, e);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        properties.entrySet().stream()
-                .forEach( (entry) -> LOGGER.info("Key = " + entry.getKey() +  " ; Value = "  + entry.getValue()));
-        seetestCloudURL = String.valueOf(properties.get("seetest.cloud.url"));
-        LOGGER.info("Exit loadInitProperties() ...");
-    }
 
     @AfterClass
     protected void tearDown() {

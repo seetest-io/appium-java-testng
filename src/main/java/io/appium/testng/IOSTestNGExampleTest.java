@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import utils.SeeTestProperties;
 
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
@@ -114,5 +115,20 @@ public class IOSTestNGExampleTest extends TestBase {
         } else {
             throw new NoSuchElementException("Current Balance Not Found");
         }
+    }
+
+    /**
+     * sets the application ("app") capability based on the OS and the property which was defined in the seetest.properties file
+     *
+     * @param os
+     */
+    private void setAppCapability(@Optional("android") String os) {
+        String appName = os.equals("android") ?
+                properties.getProperty(SeeTestProperties.Names.ANDROID_APP_NAME) :
+                properties.getProperty(SeeTestProperties.Names.IOS_APP_NAME);
+
+        appName = String.format("%s%s", "cloud:", appName);
+        LOGGER.info("Setting up {} as app capability", appName);
+        dc.setCapability(MobileCapabilityType.APP, appName);
     }
 }

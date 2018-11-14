@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import io.appium.testng.ELEMENTS.TYPE;
+import utils.SeeTestProperties;
 
 /**
  * Eribank Appium test using TestNG.
@@ -36,19 +37,7 @@ public final class AndroidTestNGExampleTest extends TestBase {
         super.initDefaultDesiredCapabilities();
         String iosAppName = String.valueOf(properties.get("ios.app.name"));
         String androidAppName = String.valueOf(properties.get("android.app.name"));
-        if (os.equals("android")) {
-            // Sets up the capabilities for Android App.
-            LOGGER.info("MobileCapabilityType.APP = " + "cloud:"+androidAppName);
-            dc.setCapability(MobileCapabilityType.APP, "cloud:"+androidAppName);
-            dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
-            LOGGER.info("AndroidMobileCapabilityType.APP_ACTIVITY = " + ".LoginActivity");
-        } else {
-            // Sets up the capabilities for iOS App.
-            LOGGER.info("MobileCapabilityType.APP = " + "cloud:"+iosAppName);
-            dc.setCapability(MobileCapabilityType.APP, "cloud:"+iosAppName);
-            LOGGER.info("IOSMobileCapabilityType.BUNDLE_ID = " + iosAppName);
-            dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, iosAppName);
-        }
+        this.setAppCapability(os);
         LOGGER.info("Exit initDefaultDesiredCapabilities");
     }
 
@@ -129,6 +118,21 @@ public final class AndroidTestNGExampleTest extends TestBase {
         } else {
             throw new NoSuchElementException("Current Balance Not Found");
         }
+    }
+
+    /**
+     * sets the application ("app") capability based on the OS and the property which was defined in the seetest.properties file
+     *
+     * @param os
+     */
+    private void setAppCapability(@Optional("android") String os) {
+        String appName = os.equals("android") ?
+                properties.getProperty(SeeTestProperties.Names.ANDROID_APP_NAME) :
+                properties.getProperty(SeeTestProperties.Names.IOS_APP_NAME);
+
+        appName = String.format("%s%s", "cloud:", appName);
+        LOGGER.info("Setting up {} as app capability", appName);
+        dc.setCapability(MobileCapabilityType.APP, appName);
     }
 
 }

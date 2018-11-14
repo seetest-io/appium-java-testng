@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TestNGExample" configfailurepolicy="continue" verbose="2">
    <parameter name = "userName" value="company"/>
-   <parameter name = "userName" value="company"/>
    <test name="AndroidTestNGExample">
       <classes>
          <class name="io.appium.testng.AndroidTestNGExampleTest">

@@ -29,6 +29,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.23'
     compile 'org.slf4j:slf4j-log4j12:1.7.7'
     compile group: 'com.experitest', name: 'seetest-client', version: '+'
+    compile group: 'com.experitest', name: 'appium-seetest-extension', version: '+'
 }
 
 task runTests(type: JavaExec, dependsOn: 'classes') {
