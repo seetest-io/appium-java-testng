@@ -1,4 +1,4 @@
- seetest.io - Java - TestNG sample project
+# seetest.io - Java - TestNG sample project
 
 This project demonstrates TestNG framework and how it can be used to test Mobile and Web Application.
 
