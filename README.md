@@ -34,12 +34,12 @@ This example will cover:
 
     Please ensure that following environment variables are set.
 
-        1. JAVA_HOME to JDK/JRE HOME and update it in the PATH variable.
-        2. SEETEST_IO_ACCESS_KEY to valid access key obtained before in Step 2.
+    1. JAVA_HOME to JDK/JRE HOME and update it in the PATH variable.
+    2. SEETEST_IO_ACCESS_KEY to valid access key obtained before in Step 2.
 
-            ```
-    	    set SEETEST_IO_ACCESS_KEY = <your access key>
-    	    ```
+        ```
+    	set SEETEST_IO_ACCESS_KEY = <your access key>
+    	```
 
     Now run the tests using following command in command line.
 
