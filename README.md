@@ -51,7 +51,7 @@ This example will cover:
     If you are using IDE like IntelliJ, make sure you create a Run configuration to use src/main/java/testng.xml.
     Set the Environment variable and then proceed to execute the test.
 
-    ![Imgur](https://imgur.com/a/lMuRRmx)
+    ![Scheme](images/IntelliJ_Run_Conf.gif)
 
 5. To Run tests in parallel, use src/main/java/testng-parallel-class.xml file
 
