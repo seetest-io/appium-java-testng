@@ -29,12 +29,7 @@ public class IOSTestNGExampleTest extends TestBase {
     protected void initDefaultDesiredCapabilities() {
         LOGGER.info("Enter initDefaultDesiredCapabilities");
         super.initDefaultDesiredCapabilities();
-        String iosAppName = String.valueOf(properties.get("ios.app.name"));
-            // Sets up the capabilities for iOS App.
-        LOGGER.info("MobileCapabilityType.APP = " + "cloud:"+iosAppName);
-        dc.setCapability(MobileCapabilityType.APP, "cloud:"+iosAppName);
-        LOGGER.info("IOSMobileCapabilityType.BUNDLE_ID = " + iosAppName);
-        dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, iosAppName);
+        this.setAppCapability(os);
         LOGGER.info("Exit initDefaultDesiredCapabilities");
     }
 

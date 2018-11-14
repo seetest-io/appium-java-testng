@@ -35,8 +35,6 @@ public final class AndroidTestNGExampleTest extends TestBase {
     protected void initDefaultDesiredCapabilities() {
         LOGGER.info("Enter initDefaultDesiredCapabilities");
         super.initDefaultDesiredCapabilities();
-        String iosAppName = String.valueOf(properties.get("ios.app.name"));
-        String androidAppName = String.valueOf(properties.get("android.app.name"));
         this.setAppCapability(os);
         LOGGER.info("Exit initDefaultDesiredCapabilities");
     }
