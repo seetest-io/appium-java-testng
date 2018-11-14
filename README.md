@@ -32,19 +32,20 @@ This example will cover:
 
 4. To run the tests,
 
-    Make sure you set the environment variable with valid access key obtained using Step 2.
+    Please ensure that following environment variables are set.
 
-    Use the command line set Environment variable.
+        1. JAVA_HOME to JDK/JRE HOME and update it in the PATH variable.
+        2. SEETEST_IO_ACCESS_KEY to valid access key obtained before in Step 2.
 
-	```
-	set SEETEST_IO_ACCESS_KEY = <your access key>
-	```
+            ```
+    	    set SEETEST_IO_ACCESS_KEY = <your access key>
+    	    ```
 
-    Use the command line run the test as below
+    Now run the tests using following command in command line.
 
-	```
-	gradlew runTests
-	```
+    ```
+    gradlew runTests
+    ```
 
     ### Note :
     If you are using IDE like IntelliJ, make sure you create a Run configuration to use src/main/java/testng.xml.
@@ -63,16 +64,23 @@ This example will cover:
 
 1. Upload you application to the cloud
 
-	(review step two in guide)
+(review step two in guide)
 
-2. Change the android application name or iOS application name in the seetest.properties file
+2. Change the android application name or iOS application name in the src/main/java/resources/seetest.properties file
+
+    For IOS,
 
 	```
 	ios.app.name = com.company.app
-	android.app.name = com.company.app/.appActivity
 	```
 
-4. Modify the tests
+    For Android,
+
+    ```
+    android.app.name = com.company.app/.appActivity
+    ```
+
+3. Modify the tests
 
 	Change the @Test methods in IOSTestNGExampleTest \ AndroidTestNGExampleTest \ WebTestNGExampleTest sources.
 
