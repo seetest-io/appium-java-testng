@@ -42,7 +42,7 @@ public class TestBase {
     RemoteWebDriver driver = null;
     String os;
     Properties properties;
-    private String deviceQuery;
+    String deviceQuery;
     Logger LOGGER = new Log4jLoggerFactory().getLogger(this.getClass().getName());
 
     /**
